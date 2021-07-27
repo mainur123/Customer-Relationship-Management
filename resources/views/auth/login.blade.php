@@ -16,18 +16,6 @@
             <div class="card-body login-card-body">
                 <p style="font-size: 23px" class="login-box-msg">User</p>
 
-<<<<<<< Updated upstream
- <form method="POST" action="{{ isset($guard) ? url($guard.'/login') : route('login') }}">
-            @csrf
-
-
-            <div>
-                <x-jet-label for="file_no" value="{{ __('File') }}" />
-                <x-jet-input id="file_no" class="block mt-1 w-full" type="text" name="file_no" :value="old('file_no')" required autofocus />
-            </div>
-            
-=======
->>>>>>> Stashed changes
 
 
                 <form method="POST" action="{{ route('login') }}">

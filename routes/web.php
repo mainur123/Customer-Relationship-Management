@@ -7,12 +7,9 @@ use Laravel\Fortify\Features;
 use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 use Laravel\Jetstream\Rules\Role;
 use App\Http\Controllers\AdminController;
-<<<<<<< Updated upstream
-=======
 use App\Http\Controllers\InstallmentController;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\SearchController;
->>>>>>> Stashed changes
 
 /*
 |--------------------------------------------------------------------------
@@ -29,15 +26,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-<<<<<<< Updated upstream
-Route::group(['prefix'=> 'admin', 'middleware'=>['admin:admin']], function(){
-	Route::get('/login', [AdminController::class, 'loginForm']);
-    //changed postlogin from store
-	Route::post('/login',[AdminController::class, 'postLogin'])->name('admin.login');
-});
-=======
->>>>>>> Stashed changes
-
+//for user dashboard
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     $users=DB::table('users')->first();
     $installments=DB::table('installments')->get();
@@ -47,6 +36,17 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
     return view('dashboard', compact('users', 'installments','timeformate'));
 })->name('dashboard');
+
+Route::get('/dashboard', [AdminController::class, 'UserDashBoardCal'])->name('dashboard');
+
+//for user report
+Route::middleware(['auth:sanctum', 'verified'])->get('user/user_report', function () {
+    $users=DB::table('users')->first();
+    $installments=DB::table('installments')->get();
+    $time=strtotime($users->installment_start_from);
+    $timeformate=date('d-M-Y',$time);
+    return view('user.user_report', compact('users', 'installments','timeformate'));
+})->name('user_report');
 
 Route::prefix('admin')->name('admin.')->group(function()
 {
@@ -70,23 +70,11 @@ Route::prefix('admin')->name('admin.')->group(function()
     Route::get('/all', [AdminController::class, 'all_member'])->middleware('auth:admin')->name('all');
     Route::get('/member/{id}',[AdminController::class,'profile'])->middleware('auth:admin');
 
-<<<<<<< Updated upstream
-
-Route::get('/home',function()
-{
-    return view('admin.index');
-});
-Route::get('/all', [AdminController::class, 'all_member']);
-
-Route::get('/member/{id}',function($id)
-{
-    return view('admin.admin_member_profile');
-});
-=======
     Route::get('/add_member',function()
     {
         return view('admin.add_member');
     })->middleware('auth:admin')->name('add_member');
+
 
     Route::post('/store',[AdminController::class,'add'])->middleware('auth:admin');
 
@@ -133,4 +121,5 @@ Route::get('/member/{id}',function($id)
     Route::post('/basic/update/{id}', [AdminController::class, 'basicUpdate'])->middleware('auth:admin');
    
 });
->>>>>>> Stashed changes
+
+

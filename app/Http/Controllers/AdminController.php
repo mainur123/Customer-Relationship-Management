@@ -1,10 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-<<<<<<< Updated upstream
-=======
 use App\Http\Controllers\Throwable;
->>>>>>> Stashed changes
 use Session;
 use App\Models\Admin;
 use App\Models\User;
@@ -24,12 +21,9 @@ use Laravel\Fortify\Contracts\LogoutResponse;
 use Laravel\Fortify\Features;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Http\Requests\LoginRequest;
-<<<<<<< Updated upstream
-=======
 use PhpParser\Node\Expr\FuncCall;
 use Illuminate\Support\Facades\DB;
 use PDF;
->>>>>>> Stashed changes
 
 class AdminController extends Controller
 {
@@ -73,14 +67,7 @@ class AdminController extends Controller
             'email'=>'required',
             'password'=>'required',
         ]);
-<<<<<<< Updated upstream
-        
 
-       
-            
-=======
-
->>>>>>> Stashed changes
         $admin=Admin::where ('email','=',$request->email)->first();
         if($admin){
             if (Hash::check($request->password, $admin->password)) {
@@ -88,22 +75,11 @@ class AdminController extends Controller
                 return redirect('admin/dashboard');
             }
 
-<<<<<<< Updated upstream
-            
-        
-=======
->>>>>>> Stashed changes
     }
         else{
         return back()->with('fail','No such email exist');
         }
 
-<<<<<<< Updated upstream
-            
-        
-
-=======
->>>>>>> Stashed changes
     }
 
     /**
@@ -336,6 +312,32 @@ class AdminController extends Controller
         ]);
 
         return view('admin.index');
+    }
+
+    public function UserDashBoardCal(){
+        //Total user sum
+        $usersCount = DB::table('users')->count();
+
+        //Total user amount sum
+        $allTotalAmount = DB::table('users')
+        ->select('total_amount')
+        ->get();
+
+        //Total user due sum
+        $allDueAmount = DB::table('users')
+        ->select('due_amount')
+        ->get();
+
+
+        //dd($usersCount);
+        return view('dashboard',
+        [
+            'usersCount' => $usersCount,
+            'allTotalAmount'=> $allTotalAmount->sum('total_amount'),
+            'allDueAmount' => $allDueAmount->sum('due_amount')
+        ]);
+
+        return view('dashboard');
     }
 
     public function new(){

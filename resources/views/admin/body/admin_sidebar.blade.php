@@ -28,39 +28,8 @@
                         <p>
                             Dashboard
 
-<<<<<<< Updated upstream
-        <!-- SIDEBAR-->
-        <li class="nav-item">
-          <a href="pages/widgets.html" class="nav-link">
-            <i class="nav-icon fas fa-th"></i>
-            <p> <!-- SIDEBAR - HOME -->
-              Home
-            </p>
-          </a>
-          <a href="#" class="nav-link">
-            <i class="nav-icon far fa-plus-square"></i>
-            <p>
-              Add Member
-            </p>
-          </a>
-          <a href="#" class="nav-link">
-            <i class="nav-icon far fa-plus-square"></i>
-            <p>
-              View Member
-            </p>
-          </a>
-          <a href="#" class="nav-link">
-            <i class="nav-icon far fa-plus-square"></i>
-            <p>
-              Report
-            </p>
-          </a>
-          
-        </li>
-=======
                         </p>
                     </a>
->>>>>>> Stashed changes
 
                 </li>
                 {{--    <li class="nav-header">LABELS</li --}}

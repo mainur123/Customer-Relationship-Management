@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->integer('file_no');
+            $table->integer('file_no')->nullable();
             $table->string('member_name')->nullable();
             $table->string('father_name')->nullable();
             $table->string('mother_name')->nullable();
@@ -25,11 +25,7 @@ class CreateUsersTable extends Migration
             $table->integer('phone_no_1')->nullable();
             $table->integer('phone_no_2')->nullable();
             $table->date('date_of_birth')->nullable();
-<<<<<<< Updated upstream
-            $table->integer('national_id')->nullable();
-=======
             $table->bigInteger('national_id')->nullable();
->>>>>>> Stashed changes
             $table->string('profession')->nullable();
             $table->string('office_address')->nullable();
             $table->string('designation')->nullable();
@@ -39,14 +35,6 @@ class CreateUsersTable extends Migration
             //$table->string('payment')->nullable(), note;
             $table->integer('total_amount')->nullable();
             $table->integer('no_of_installment')->nullable();
-<<<<<<< Updated upstream
-            $table->date('installment_start from')->nullable();
-            $table->text('description')->nullable();
-            $table->text('nominee_image')->nullable();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->integer('booking_money')->nullable();
-            $table->text('down_payment')->nullable();
-=======
 
             $table->integer('total_installment_amount')->nullable();
 
@@ -64,7 +52,6 @@ class CreateUsersTable extends Migration
             $table->date('down_payment_paid_date')->nullable();
             $table->date('down_payment_due_date')->nullable();
 
->>>>>>> Stashed changes
             $table->integer('car_parking')->nullable();
 
             $table->date('car_parking_paid_date')->nullable();
@@ -95,8 +82,6 @@ class CreateUsersTable extends Migration
             $table->date('finishing_work_paid_date')->nullable();
 
             $table->integer('after_handover_money')->nullable();
-<<<<<<< Updated upstream
-=======
             $table->date('after_handover_paid_date')->nullable();
             //Paid
             $table->integer('booking_money_paid')->nullable();
@@ -135,7 +120,6 @@ class CreateUsersTable extends Migration
             $table->string('after_handover_money_note')->nullable();       
 
 
->>>>>>> Stashed changes
             $table->string('password');
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
